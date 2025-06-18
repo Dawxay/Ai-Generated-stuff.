@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My CSS Learning Progress</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+        <div id="progress-text">0%</div>
+    </div>
+
+    <div id="time-tracker">
+        <h2>Time Tracker</h2>
+        <p>Enter the time (in minutes) it took you to complete a section:</p>
+        <input type="number" id="time-input" placeholder="Enter minutes...">
+        <button id="add-time-btn">Add Time</button>
+        <p id="time-estimate">Your estimated time to finish the course will appear here.</p>
+    </div>
+
+    <div class="course-container">
+        <h1>CSS Learning Checklist</h1>
+        <ul class="main-list">
+            <li>
+                <input type="checkbox" id="css-tutorial">
+                <label for="css-tutorial">CSS Tutorial</label>
+                <ul>
+                    <li><input type="checkbox"><label>CSS HOME</label></li>
+                    <li><input type="checkbox"><label>CSS Introduction</label></li>
+                    <li><input type="checkbox"><label>CSS Syntax</label></li>
+                    <li><input type="checkbox"><label>CSS Selectors</label></li>
+                    <li><input type="checkbox"><label>CSS How To</label></li>
+                    <li><input type="checkbox"><label>CSS Comments</label></li>
+                    <li>
+                        <input type="checkbox"><label>CSS Colors</label>
+                        <ul>
+                            <li><input type="checkbox"><label>Colors</label></li>
+                            <li><input type="checkbox"><label>RGB</label></li>
+                            <li><input type="checkbox"><label>HEX</label></li>
+                            <li><input type="checkbox"><label>HSL</label></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <input type="checkbox"><label>CSS Backgrounds</label>
+                        <ul>
+                            <li><input type="checkbox"><label>Background Color</label></li>
+                            <li><input type="checkbox"><label>Background Image</label></li>
+                            <li><input type="checkbox"><label>Background Repeat</label></li>
+                            <li><input type="checkbox"><label>Background Attachment</label></li>
+                            <li><input type="checkbox"><label>Background Shorthand</label></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <input type="checkbox"><label>CSS Borders</label>
+                        <ul>
+                            <li><input type="checkbox"><label>Borders</label></li>
+                            <li><input type="checkbox"><label>Border Width</label></li>
+                            <li><input type="checkbox"><label>Border Color</label></li>
+                            <li><input type="checkbox"><label>Border Sides</label></li>
+                            <li><input type="checkbox"><label>Border Shorthand</label></li>
+                            <li><input type="checkbox"><label>Rounded Borders</label></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <input type="checkbox"><label>CSS Margins</label>
+                        <ul>
+                            <li><input type="checkbox"><label>Margins</label></li>
+                            <li><input type="checkbox"><label>Margin Collapse</label></li>
+                        </ul>
+                    </li>
+                    <li><input type="checkbox"><label>CSS Padding</label></li>
+                    <li><input type="checkbox"><label>CSS Height/Width</label></li>
+                    <li><input type="checkbox"><label>CSS Box Model</label></li>
+                    <li>
+                        <input type="checkbox"><label>CSS Outline</label>
+                        <ul>
+                            <li><input type="checkbox"><label>Outline</label></li>
+                            <li><input type="checkbox"><label>Outline Width</label></li>
+                            <li><input type="checkbox"><label>Outline Color</label></li>
+                            <li><input type="checkbox"><label>Outline Shorthand</label></li>
+                            <li><input type="checkbox"><label>Outline Offset</label></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <input type="checkbox"><label>CSS Text</label>
+                        <ul>
+                            <li><input type="checkbox"><label>Text Color</label></li>
+                            <li><input type="checkbox"><label>Text Alignment</label></li>
+                            <li><input type="checkbox"><label>Text Decoration</label></li>
+                            <li><input type="checkbox"><label>Text Transformation</label></li>
+                            <li><input type="checkbox"><label>Text Spacing</label></li>
+                            <li><input type="checkbox"><label>Text Shadow</label></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <input type="checkbox"><label>CSS Fonts</label>
+                        <ul>
+                            <li><input type="checkbox"><label>Font Family</label></li>
+                            <li><input type="checkbox"><label>Font Web Safe</label></li>
+                            <li><input type="checkbox"><label>Font Fallbacks</label></li>
+                            <li><input type="checkbox"><label>Font Style</label></li>
+                            <li><input type="checkbox"><label>Font Size</label></li>
+                            <li><input type="checkbox"><label>Font Google</label></li>
+                            <li><input type="checkbox"><label>Font Pairings</label></li>
+                            <li><input type="checkbox"><label>Font Shorthand</label></li>
+                        </ul>
+                    </li>
+                    <li><input type="checkbox"><label>CSS Icons</label></li>
+                    <li><input type="checkbox"><label>CSS Links</label></li>
+                    <li><input type="checkbox"><label>CSS Lists</label></li>
+                    <li>
+                        <input type="checkbox"><label>CSS Tables</label>
+                        <ul>
+                            <li><input type="checkbox"><label>Table Borders</label></li>
+                            <li><input type="checkbox"><label>Table Size</label></li>
+                            <li><input type="checkbox"><label>Table Alignment</label></li>
+                            <li><input type="checkbox"><label>Table Style</label></li>
+                            <li><input type="checkbox"><label>Table Responsive</label></li>
+                        </ul>
+                    </li>
+                    <li><input type="checkbox"><label>CSS Display</label></li>
+                    <li><input type="checkbox"><label>CSS Max-width</label></li>
+                    <li><input type="checkbox"><label>CSS Position</label></li>
+                    <li><input type="checkbox"><label>CSS Z-index</label></li>
+                    <li><input type="checkbox"><label>CSS Overflow</label></li>
+                    <li>
+                        <input type="checkbox"><label>CSS Float</label>
+                        <ul>
+                            <li><input type="checkbox"><label>Float</label></li>
+                            <li><input type="checkbox"><label>Clear</label></li>
+                            <li><input type="checkbox"><label>Float Examples</label></li>
+                        </ul>
+                    </li>
+                    <li><input type="checkbox"><label>CSS Inline-block</label></li>
+                    <li><input type="checkbox"><label>CSS Align</label></li>
+                    <li><input type="checkbox"><label>CSS Combinators</label></li>
+                    <li><input type="checkbox"><label>CSS Pseudo-classes</label></li>
+                    <li><input type="checkbox"><label>CSS Pseudo-elements</label></li>
+                    <li><input type="checkbox"><label>CSS Opacity</label></li>
+                    <li>
+                        <input type="checkbox"><label>CSS Navigation Bar</label>
+                        <ul>
+                            <li><input type="checkbox"><label>Navbar</label></li>
+                            <li><input type="checkbox"><label>Vertical Navbar</label></li>
+                            <li><input type="checkbox"><label>Horizontal Navbar</label></li>
+                        </ul>
+                    </li>
+                    <li><input type="checkbox"><label>CSS Dropdowns</label></li>
+                    <li><input type="checkbox"><label>CSS Image Gallery</label></li>
+                    <li><input type="checkbox"><label>CSS Image Sprites</label></li>
+                    <li><input type="checkbox"><label>CSS Attribute Selectors</label></li>
+                    <li><input type="checkbox"><label>CSS Forms</label></li>
+                    <li><input type="checkbox"><label>CSS Counters</label></li>
+                    <li><input type="checkbox"><label>CSS Website Layout</label></li>
+                    <li><input type="checkbox"><label>CSS Units</label></li>
+                    <li><input type="checkbox"><label>CSS Specificity</label></li>
+                    <li><input type="checkbox"><label>CSS !important</label></li>
+                    <li><input type="checkbox"><label>CSS Math Functions</label></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="css-advanced">
+                <label for="css-advanced">CSS Advanced</label>
+                <ul>
+                    <li><input type="checkbox"><label>CSS Rounded Corners</label></li>
+                    <li><input type="checkbox"><label>CSS Border Images</label></li>
+                    <li><input type="checkbox"><label>CSS Backgrounds</label></li>
+                    <li><input type="checkbox"><label>CSS Colors</label></li>
+                    <li><input type="checkbox"><label>CSS Color Keywords</label></li>
+                    <li>
+                        <input type="checkbox"><label>CSS Gradients</label>
+                        <ul>
+                            <li><input type="checkbox"><label>Linear Gradients</label></li>
+                            <li><input type="checkbox"><label>Radial Gradients</label></li>
+                            <li><input type="checkbox"><label>Conic Gradients</label></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <input type="checkbox"><label>CSS Shadows</label>
+                        <ul>
+                            <li><input type="checkbox"><label>Shadow Effects</label></li>
+                            <li><input type="checkbox"><label>Box Shadow</label></li>
+                        </ul>
+                    </li>
+                    <li><input type="checkbox"><label>CSS Text Effects</label></li>
+                    <li><input type="checkbox"><label>CSS Web Fonts</label></li>
+                    <li><input type="checkbox"><label>CSS 2D Transforms</label></li>
+                    <li><input type="checkbox"><label>CSS 3D Transforms</label></li>
+                    <li><input type="checkbox"><label>CSS Transitions</label></li>
+                    <li><input type="checkbox"><label>CSS Animations</label></li>
+                    <li><input type="checkbox"><label>CSS Tooltips</label></li>
+                    <li><input type="checkbox"><label>CSS Image Styling</label></li>
+                    <li><input type="checkbox"><label>CSS Image Centering</label></li>
+                    <li><input type="checkbox"><label>CSS Image Filters</label></li>
+                    <li><input type="checkbox"><label>CSS Image Shapes</label></li>
+                    <li><input type="checkbox"><label>CSS object-fit</label></li>
+                    <li><input type="checkbox"><label>CSS object-position</label></li>
+                    <li><input type="checkbox"><label>CSS Masking</label></li>
+                    <li><input type="checkbox"><label>CSS Buttons</label></li>
+                    <li><input type="checkbox"><label>CSS Pagination</label></li>
+                    <li><input type="checkbox"><label>CSS Multiple Columns</label></li>
+                    <li><input type="checkbox"><label>CSS User Interface</label></li>
+                    <li>
+                        <input type="checkbox"><label>CSS Variables</label>
+                        <ul>
+                            <li><input type="checkbox"><label>The var() Function</label></li>
+                            <li><input type="checkbox"><label>Overriding Variables</label></li>
+                            <li><input type="checkbox"><label>Variables and JavaScript</label></li>
+                            <li><input type="checkbox"><label>Variables in Media Queries</label></li>
+                        </ul>
+                    </li>
+                    <li><input type="checkbox"><label>CSS @property</label></li>
+                    <li><input type="checkbox"><label>CSS Box Sizing</label></li>
+                    <li><input type="checkbox"><label>CSS Media Queries</label></li>
+                    <li><input type="checkbox"><label>CSS MQ Examples</label></li>
+                </ul>
+            </li>
+             <li>
+                <input type="checkbox" id="css-flexbox">
+                <label for="css-flexbox">CSS Flexbox</label>
+                <ul>
+                    <li><input type="checkbox"><label>Flexbox Intro</label></li>
+                    <li><input type="checkbox"><label>Flex Container</label></li>
+                    <li><input type="checkbox"><label>Flex Items</label></li>
+                    <li><input type="checkbox"><label>Flex Responsive</label></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="css-grid">
+                <label for="css-grid">CSS Grid</label>
+                <ul>
+                    <li><input type="checkbox"><label>Grid Intro</label></li>
+                    <li><input type="checkbox"><label>Grid Columns/Rows</label></li>
+                    <li><input type="checkbox"><label>Grid Container</label></li>
+                    <li><input type="checkbox"><label>Grid Item</label></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="css-responsive">
+                <label for="css-responsive">CSS Responsive</label>
+                <ul>
+                    <li><input type="checkbox"><label>RWD Intro</label></li>
+                    <li><input type="checkbox"><label>RWD Viewport</label></li>
+                    <li><input type="checkbox"><label>RWD Grid View</label></li>
+                    <li><input type="checkbox"><label>RWD Media Queries</label></li>
+                    <li><input type="checkbox"><label>RWD Images</label></li>
+                    <li><input type="checkbox"><label>RWD Videos</label></li>
+                    <li><input type="checkbox"><label>RWD Frameworks</label></li>
+                    <li><input type="checkbox"><label>RWD Templates</label></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="css-sass">
+                <label for="css-sass">CSS SASS</label>
+                <ul>
+                    <li><input type="checkbox"><label>SASS Tutorial</label></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="css-examples">
+                <label for="css-examples">CSS Examples</label>
+                <ul>
+                    <li><input type="checkbox"><label>CSS Templates</label></li>
+                    <li><input type="checkbox"><label>CSS Examples</label></li>
+                    <li><input type="checkbox"><label>CSS Editor</label></li>
+                    <li><input type="checkbox"><label>CSS Snippets</label></li>
+                    <li><input type="checkbox"><label>CSS Quiz</label></li>
+                    <li><input type="checkbox"><label>CSS Exercises</label></li>
+                    <li><input type="checkbox"><label>CSS Website</label></li>
+                    <li><input type="checkbox"><label>CSS Syllabus</label></li>
+                    <li><input type="checkbox"><label>CSS Study Plan</label></li>
+                    <li><input type="checkbox"><label>CSS Interview Prep</label></li>
+                    <li><input type="checkbox"><label>CSS Bootcamp</label></li>
+                    <li><input type="checkbox"><label>CSS Certificate</label></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="css-references">
+                <label for="css-references">CSS References</label>
+                <ul>
+                    <li><input type="checkbox"><label>CSS Reference</label></li>
+                    <li><input type="checkbox"><label>CSS Selectors</label></li>
+                    <li><input type="checkbox"><label>CSS Combinators</label></li>
+                    <li><input type="checkbox"><label>CSS Pseudo-classes</label></li>
+                    <li><input type="checkbox"><label>CSS Pseudo-elements</label></li>
+                    <li><input type="checkbox"><label>CSS At-rules</label></li>
+                    <li><input type="checkbox"><label>CSS Functions</label></li>
+                    <li><input type="checkbox"><label>CSS Reference Aural</label></li>
+                    <li><input type="checkbox"><label>CSS Web Safe Fonts</label></li>
+                    <li><input type="checkbox"><label>CSS Animatable</label></li>
+                    <li><input type="checkbox"><label>CSS Units</label></li>
+                    <li><input type="checkbox"><label>CSS PX-EM Converter</label></li>
+                    <li><input type="checkbox"><label>CSS Colors</label></li>
+                    <li><input type="checkbox"><label>CSS Color Values</label></li>
+                    <li><input type="checkbox"><label>CSS Default Values</label></li>
+                    <li><input type="checkbox"><label>CSS Browser Support</label></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div id="celebration"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

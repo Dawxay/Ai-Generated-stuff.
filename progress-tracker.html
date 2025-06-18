@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Learning Progress Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .progress-container {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            width: 0%;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .topic-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .topic-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .topic-item.completed {
+            background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
+            border-color: #4CAF50;
+        }
+
+        .topic-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            margin-right: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .topic-checkbox.checked {
+            background: #4CAF50;
+            border-color: #4CAF50;
+        }
+
+        .topic-checkbox.checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            animation: checkmark 0.3s ease-out;
+        }
+
+        @keyframes checkmark {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .topic-label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #333;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .topic-item.completed .topic-label {
+            text-decoration: line-through;
+            color: #666;
+            animation: strikethrough 0.5s ease-out;
+        }
+
+        @keyframes strikethrough {
+            0% { text-decoration: none; }
+            100% { text-decoration: line-through; }
+        }
+
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .celebration.show {
+            display: flex;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .celebration-content {
+            text-align: center;
+            color: white;
+            animation: celebrationBounce 1s ease-out;
+        }
+
+        @keyframes celebrationBounce {
+            0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+            50% { transform: scale(1.1) rotate(5deg); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        .celebration h2 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .celebration p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .fireworks {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .firework {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: explode 2s ease-out infinite;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .reset-btn {
+            display: block;
+            margin: 30px auto 0;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #ff6b6b, #ff5252);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .celebration h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 CSS Learning Journey</h1>
+            <p>Track your progress through mastering CSS</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">0 / 107 topics completed (0%)</div>
+        </div>
+        
+        <div class="topics-grid" id="topicsGrid">
+            <!-- Topics will be dynamically generated -->
+        </div>
+        
+        <button class="reset-btn" onclick="resetProgress()">🔄 Reset Progress</button>
+    </div>
+    
+    <div class="celebration" id="celebration">
+        <div class="fireworks" id="fireworks"></div>
+        <div class="celebration-content">
+            <h2>🎉 Congratulations! 🎉</h2>
+            <p>You've mastered all CSS topics!</p>
+            <p>You're now a CSS expert! 🚀</p>
+        </div>
+    </div>
+
+    <script>
+        const topics = [
+            "CSS Introduction", "CSS Syntax", "CSS Selectors", "CSS How To", "CSS Comments",
+            "CSS Colors", "CSS Backgrounds", "CSS Borders", "CSS Margins", "CSS Padding",
+            "CSS Height/Width", "CSS Box Model", "CSS Outline", "CSS Text", "CSS Fonts",
+            "CSS Icons", "CSS Links", "CSS Lists", "CSS Tables", "CSS Display",
+            "CSS Max-width", "CSS Position", "CSS Z-index", "CSS Overflow", "CSS Float",
+            "CSS Inline-block", "CSS Align", "CSS Combinators", "CSS Pseudo-classes", "CSS Pseudo-elements",
+            "CSS Opacity", "CSS Navigation Bar", "CSS Dropdowns", "CSS Image Gallery", "CSS Image Sprites",
+            "CSS Attr Selectors", "CSS Forms", "CSS Counters", "CSS Website Layout", "CSS Units",
+            "CSS Specificity", "CSS !important", "CSS Math Functions", "CSS Advanced", "CSS Rounded Corners",
+            "CSS Border Images", "CSS Backgrounds", "CSS Colors", "CSS Color Keywords", "CSS Gradients",
+            "CSS Shadows", "CSS Text Effects", "CSS Web Fonts", "CSS 2D Transforms", "CSS 3D Transforms",
+            "CSS Transitions", "CSS Animations", "CSS Tooltips", "CSS Image Styling", "CSS Image Centering",
+            "CSS Image Filters", "CSS Image Shapes", "CSS object-fit", "CSS object-position", "CSS Masking",
+            "CSS Buttons", "CSS Pagination", "CSS Multiple Columns", "CSS User Interface", "CSS Variables",
+            "CSS @property", "CSS Box Sizing", "CSS Media Queries", "CSS MQ Examples", "CSS Flexbox",
+            "Flexbox Intro", "Flex Container", "Flex Items", "Flex Responsive", "CSS Grid",
+            "Grid Intro", "Grid Columns/Rows", "Grid Container", "Grid Item", "CSS Responsive",
+            "RWD Intro", "RWD Viewport", "RWD Grid View", "RWD Media Queries", "RWD Images",
+            "RWD Videos", "RWD Frameworks", "RWD Templates", "CSS SASS", "SASS Tutorial",
+            "CSS Examples", "CSS Templates", "CSS Examples", "CSS Editor", "CSS Snippets",
+            "CSS Quiz", "CSS Exercises", "CSS Website", "CSS Syllabus", "CSS Study Plan",
+            "CSS Interview Prep", "CSS Bootcamp", "CSS Certificate", "CSS References", "CSS Reference",
+            "CSS Selectors", "CSS Combinators", "CSS Pseudo-classes", "CSS Pseudo-elements", "CSS At-rules",
+            "CSS Functions", "CSS Reference Aural", "CSS Web Safe Fonts", "CSS Animatable", "CSS Units",
+            "CSS PX-EM Converter", "CSS Colors", "CSS Color Values", "CSS Default Values", "CSS Browser Support"
+        ];
+
+        let completedTopics = new Set();
+        
+        function initializeTopics() {
+            const grid = document.getElementById('topicsGrid');
+            grid.innerHTML = '';
+            
+            topics.forEach((topic, index) => {
+                const topicItem = document.createElement('div');
+                topicItem.className = 'topic-item';
+                topicItem.onclick = () => toggleTopic(index);
+                
+                topicItem.innerHTML = `
+                    <div class="topic-checkbox" id="checkbox-${index}"></div>
+                    <div class="topic-label">${topic}</div>
+                `;
+                
+                grid.appendChild(topicItem);
+            });
+        }
+        
+        function toggleTopic(index) {
+            const topicItem = document.querySelectorAll('.topic-item')[index];
+            const checkbox = document.getElementById(`checkbox-${index}`);
+            
+            if (completedTopics.has(index)) {
+                completedTopics.delete(index);
+                topicItem.classList.remove('completed');
+                checkbox.classList.remove('checked');
+            } else {
+                completedTopics.add(index);
+                topicItem.classList.add('completed');
+                checkbox.classList.add('checked');
+            }
+            
+            updateProgress();
+        }
+        
+        function updateProgress() {
+            const completed = completedTopics.size;
+            const total = topics.length;
+            const percentage = Math.round((completed / total) * 100);
+            
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            
+            progressFill.style.width = percentage + '%';
+            progressText.textContent = `${completed} / ${total} topics completed (${percentage}%)`;
+            
+            if (completed === total && completed > 0) {
+                setTimeout(showCelebration, 500);
+            }
+        }
+        
+        function showCelebration() {
+            const celebration = document.getElementById('celebration');
+            celebration.classList.add('show');
+            createFireworks();
+            
+            setTimeout(() => {
+                celebration.addEventListener('click', hideCelebration);
+            }, 1000);
+        }
+        
+        function hideCelebration() {
+            const celebration = document.getElementById('celebration');
+            celebration.classList.remove('show');
+            celebration.removeEventListener('click', hideCelebration);
+        }
+        
+        function createFireworks() {
+            const fireworksContainer = document.getElementById('fireworks');
+            fireworksContainer.innerHTML = '';
+            
+            for (let i = 0; i < 50; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = Math.random() * 100 + '%';
+                firework.style.top = Math.random() * 100 + '%';
+                firework.style.animationDelay = Math.random() * 2 + 's';
+                firework.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                fireworksContainer.appendChild(firework);
+            }
+        }
+        
+        function resetProgress() {
+            completedTopics.clear();
+            const topicItems = document.querySelectorAll('.topic-item');
+            const checkboxes = document.querySelectorAll('.topic-checkbox');
+            
+            topicItems.forEach(item => item.classList.remove('completed'));
+            checkboxes.forEach(checkbox => checkbox.classList.remove('checked'));
+            
+            updateProgress();
+            hideCelebration();
+        }
+        
+        // Initialize the application
+        initializeTopics();
+        updateProgress();
+    </script>
+</body>
+</html>
